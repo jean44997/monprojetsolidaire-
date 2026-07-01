@@ -1,0 +1,11 @@
+node_modules
+.output
+.wrangler
+.nitro
+.tanstack
+dist
+dist-ssr
+dev-server.log
+dev-server.err.log
+*.local
+*.tsbuildinfo
