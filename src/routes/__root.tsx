@@ -29,12 +29,17 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "fJB3YtwRCrS0KZ4t3ywdHHx9FmpXEN0fNxaIZqGqLSY" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "googlebot", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { title: "Atlantis Groupe — Immobilier à Abidjan" },
       { name: "description", content: "Atlantis Groupe : agence immobilière à Abidjan. Vente et location de terrains, maisons et appartements." },
       { name: "author", content: "Atlantis Groupe" },
       { property: "og:title", content: "Atlantis Groupe — Immobilier à Abidjan" },
       { property: "og:description", content: "Vente et location de terrains, maisons et appartements à Abidjan." },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "fr_CI" },
+      { property: "og:site_name", content: "Atlantis Groupe" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Atlantis Groupe — Immobilier à Abidjan" },
       { name: "twitter:description", content: "Vente et location de biens immobiliers à Abidjan." },
@@ -55,9 +60,23 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="fr-CI">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "RealEstateAgent",
+              name: "Atlantis Groupe",
+              url: "https://atlantisgroupe.ci",
+              email: "contact@atlantisgroupe.ci",
+              areaServed: ["Abidjan", "Côte d’Ivoire"],
+              description: "Agence immobilière à Abidjan spécialisée dans la vente et la location de terrains, maisons et appartements.",
+            }),
+          }}
+        />
       </head>
       <body>
         {children}

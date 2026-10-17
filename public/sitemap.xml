@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://atlantisgroupe.ci/</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/vente</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/vente/terrains</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/vente/maisons</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/vente/appartements</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/locations</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/locations/terrains</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/locations/maisons</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/locations/appartements</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/about</loc>
+  </url>
+  <url>
+    <loc>https://atlantisgroupe.ci/contact</loc>
+  </url>
+</urlset>
