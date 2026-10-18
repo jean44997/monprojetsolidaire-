@@ -75,7 +75,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
               "@context": "https://schema.org",
               "@type": "RealEstateAgent",
               name: "Atlantis Groupe",
-              url: "https://atlantisgroupe.ci",
+              url: "https://www.aibimmobilierciv.fr",
               email: "contact@atlantisgroupe.ci",
               areaServed: ["Abidjan", "Côte d’Ivoire"],
               description: "Agence immobilière à Abidjan spécialisée dans la vente et la location de terrains, maisons et appartements.",

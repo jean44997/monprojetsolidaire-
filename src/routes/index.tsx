@@ -11,6 +11,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Atlantis Groupe — Immobilier Abidjan" },
       { property: "og:description", content: "Vente et location de biens immobiliers à Abidjan." },
     ],
+    links: [{ rel: "canonical", href: "https://www.aibimmobilierciv.fr/" }],
   }),
   component: Home_,
 });
