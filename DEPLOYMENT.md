@@ -50,8 +50,12 @@ Le schema et les regles RLS sont dans `supabase/migrations`. L'application refus
 
 Les contributions ne peuvent pas etre ajoutees par le navigateur. Une fois un prestataire de paiement integre, seul son webhook serveur devra creer une contribution confirmee. Les demandes de retrait sont enregistrees comme `pending`; aucun versement automatique n'est actif.
 
-### Point d'entree webhook (contrat interne, adaptateur marchand a ajouter)
+### Paiements Jèko
 
 `POST https://sgulsvbzwzrqahvaozwm.supabase.co/functions/v1/payment-webhook`
 
-La fonction est publiee sur Lekaya, exige une signature HMAC-SHA256 (`x-mps-timestamp` et `x-mps-signature: sha256=...`) avec une fenetre de 5 minutes, et ne confirme qu'une contribution `pending` deja creee par un parcours serveur, avec montant, devise XOF et prestataire identiques. Les callbacks non signes sont rejetes. Le secret HMAC est conserve dans les secrets Edge Functions Supabase. Ce contrat interne n'est pas encore celui de Wave, Djamo, Orange Money, MTN MoMo ou Moov Money : ajouter l'adaptateur correspondant et le parcours de creation de paiement avant de configurer directement un fournisseur marchand. Une reference inconnue est rejetee avec HTTP 404; ne pas presenter ce endpoint comme un paiement actif.
+Les paiements sont créés côté serveur par `jeko-checkout`, puis le visiteur est redirigé vers la page sécurisée Jèko. Les contributions ne passent à `confirmed` qu'après vérification de la notification signée ou consultation de statut auprès de Jèko. Le retour navigateur seul ne confirme jamais un paiement. Le statut public est servi par `jeko-payment-status`.
+
+Dans le tableau de bord Jèko, section API et Webhooks, configurer cette URL comme webhook de la boutique utilisée. Sélectionner l'événement de transaction terminée. Jèko signe le corps brut avec HMAC-SHA256 dans l'en-tête `Jeko-Signature`; la fonction vérifie aussi la boutique, la référence, le montant, la devise et le moyen de paiement. La clé webhook, la clé API, l'identifiant de clé et l'identifiant boutique sont des secrets Edge Functions Supabase, jamais des variables `VITE_` ni des valeurs à committer.
+
+Les méthodes configurées sont Wave, Orange Money, MTN MoMo, Moov Money et Djamo. Les appels de création transitent par Jèko en production. Jèko ne fournit pas de mode sandbox pour cette intégration : ne pas simuler un paiement en appelant l'API de création. Vérifier les parcours de paiement avec une transaction réelle de faible montant seulement quand le propriétaire du compte l'aura explicitement décidé.

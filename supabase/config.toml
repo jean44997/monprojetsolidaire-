@@ -26,3 +26,9 @@ enable_confirmations = false
 
 [functions.payment-webhook]
 verify_jwt = false
+
+[functions.jeko-checkout]
+verify_jwt = false
+
+[functions.jeko-payment-status]
+verify_jwt = false

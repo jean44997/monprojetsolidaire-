@@ -393,3 +393,31 @@ html[data-theme="dark"] .public-fundraiser-footer{border-color:#334237;color:#b6
 .wallet-withdrawal-form p{grid-column:1/-1;color:#286d45!important;font-size:12px!important;line-height:1.5}
 .member-dark .account-error{background:#321f1c;color:#ffb7a9;border-color:#61332b}
 .member-dark .wallet-withdrawal-form input{background:#111a14;color:#edf4ef;border-color:#39463b}
+
+/* Keep mobile wizard actions in document flow so they never cover fields. */
+@media(max-width:720px){
+  .member-main .create-form .form-fields{padding-bottom:12px}
+  .member-main .create-form .form-actions{position:sticky;left:auto;right:auto;bottom:calc(8px + env(safe-area-inset-bottom));width:100%;max-width:none;margin:24px 0 0;padding:8px;border:1px solid #e6eee8;border-radius:16px;background:#ffffffed;box-shadow:0 8px 28px #14391d1f;backdrop-filter:blur(12px)}
+  .member-dark .member-main .create-form .form-actions{background:#18231bed;border-color:#304237}
+  .member-main .create-form .form-actions .btn{min-width:0;min-height:48px;padding:10px 12px}
+  .member-info-banner{padding-bottom:16px}
+  .member-info-banner .banner-dots{position:static;left:auto;bottom:auto;transform:none;justify-content:center;gap:4px;margin:8px auto 0;width:max-content}
+  .member-info-banner .banner-dots button{position:relative;width:24px;height:24px;border-radius:50%;background:transparent;display:grid;place-items:center}
+  .member-info-banner .banner-dots button::after{width:6px;height:6px;border-radius:99px;background:#dce9df;content:'';transition:width .2s,background .2s}
+  .member-info-banner .banner-dots button.active::after{width:16px;background:#15984a}
+  .public-fundraiser-layout{padding:0 14px;gap:14px}
+  .donation-card{width:100%;min-width:0;box-sizing:border-box}
+  .amount-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .payment-method-picker>div{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+  .payment-method-picker button{min-width:0;height:45px}
+  .public-fundraiser-page .donation-submit{position:static;width:100%;min-height:52px;margin:8px 0 0;display:flex;align-items:center;justify-content:center;background:#138b49!important;color:#fff!important;border:1px solid #138b49!important;opacity:1;box-shadow:0 7px 18px #138b4930}
+}
+.public-fundraiser-page .donation-submit{background:#138b49!important;color:#fff!important;border:1px solid #138b49!important;opacity:1;box-shadow:0 7px 18px #138b4930}
+.public-fundraiser-page .donation-submit:hover{background:#0e733b!important;border-color:#0e733b!important}
+.public-fundraiser-page .donation-submit:disabled{background:#62746a!important;color:#fff!important;border-color:#62746a!important;opacity:1;cursor:wait}
+.payment-result{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:2px 10px;margin:14px 0;padding:13px;border-radius:12px;border:1px solid #d8e9dc;background:#f3fbf5;color:#183a25}
+.payment-result>span{grid-row:span 2;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:#dff5e5;color:#138b49}
+.payment-result>b{font-size:13px}
+.payment-result>small{font-size:11px;line-height:1.45;color:#58705f}
+.payment-result.pending{background:#f5f8fc;border-color:#e1e8f2}.payment-result.pending>span{background:#eaf0fa;color:#4f72a4}
+.payment-result.failed{background:#fff7f4;border-color:#f3ded6}.payment-result.failed>span{background:#ffebe4;color:#b95336}
