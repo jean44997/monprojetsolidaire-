@@ -49,3 +49,9 @@ Le schema et les regles RLS sont dans `supabase/migrations`. L'application refus
 4. Ajouter sur Vercel `VITE_SUPABASE_URL` et `VITE_SUPABASE_PUBLISHABLE_KEY` pour Preview et Production. La cle publishable/anon est faite pour le navigateur; ne jamais y mettre la cle `service_role`, une cle `sb_secret_...`, le mot de passe SQL ni le jeton personnel Supabase.
 
 Les contributions ne peuvent pas etre ajoutees par le navigateur. Une fois un prestataire de paiement integre, seul son webhook serveur devra creer une contribution confirmee. Les demandes de retrait sont enregistrees comme `pending`; aucun versement automatique n'est actif.
+
+### Point d'entree webhook (contrat interne, adaptateur marchand a ajouter)
+
+`POST https://sgulsvbzwzrqahvaozwm.supabase.co/functions/v1/payment-webhook`
+
+La fonction est publiee sur Lekaya, exige une signature HMAC-SHA256 (`x-mps-timestamp` et `x-mps-signature: sha256=...`) avec une fenetre de 5 minutes, et ne confirme qu'une contribution `pending` deja creee par un parcours serveur, avec montant, devise XOF et prestataire identiques. Les callbacks non signes sont rejetes. Le secret HMAC est conserve dans les secrets Edge Functions Supabase. Ce contrat interne n'est pas encore celui de Wave, Djamo, Orange Money, MTN MoMo ou Moov Money : ajouter l'adaptateur correspondant et le parcours de creation de paiement avant de configurer directement un fournisseur marchand. Une reference inconnue est rejetee avec HTTP 404; ne pas presenter ce endpoint comme un paiement actif.
