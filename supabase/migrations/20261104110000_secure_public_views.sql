@@ -24,3 +24,8 @@ create policy "public can read confirmed contributions for public fundraisers"
 
 grant select (id, fundraiser_id, amount, public_name, created_at, status)
   on public.contributions to anon;
+
+-- The profile bootstrap function is only called by the auth.users trigger.
+-- It must not be callable directly through the public RPC surface.
+revoke all on function public.create_profile_for_user()
+  from public, anon, authenticated;
