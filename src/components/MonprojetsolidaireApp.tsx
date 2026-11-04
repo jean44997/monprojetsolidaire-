@@ -20,7 +20,7 @@ const categories = [
   { id: "orphelins", label: "Orphelins", icon: Users, text: "Offrir un avenir aux enfants." },
   { id: "projet_solidaire", label: "Projet solidaire", icon: Sprout, text: "Des projets qui font du bien." },
 ];
-const methods = ["MTN", "Orange", "Moov", "Wave", "Visa / Mastercard", "Virement"];
+const methods = ["MTN MoMo", "Orange Money", "Moov Money", "Wave", "Djamo"];
 const faq = [
   ["Monprojetsolidaire est-il gratuit ?", "La création et le partage d’une cagnotte se font en quelques étapes. Les frais applicables sont indiqués avant chaque opération."],
   ["Quels moyens de paiement sont acceptés ?", "Les contributeurs choisissent parmi les moyens proposés : Mobile Money, carte bancaire ou virement."],
