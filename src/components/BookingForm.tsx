@@ -22,7 +22,7 @@ export function BookingForm({ propertyName }: { propertyName?: string }) {
       return;
     }
     const text =
-      `Bonjour Atlantis Groupe,%0A` +
+      `Bonjour Monprojetsolidaire,%0A` +
       `Je vous contacte${propertyName ? ` au sujet de : *${propertyName}*` : ""}.%0A` +
       `Nom : ${form.name}%0A` +
       `Téléphone : ${form.phone}%0A` +

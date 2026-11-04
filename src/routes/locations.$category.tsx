@@ -10,8 +10,8 @@ export const Route = createFileRoute("/locations/$category")({
     const label = cat?.label ?? "Location";
     return {
       meta: [
-        { title: `${label} à louer Abidjan — Atlantis Groupe` },
-        { name: "description", content: `${label} à louer à Abidjan. Location meublée, court ou long séjour avec Atlantis Groupe.` },
+        { title: `Cagnottes ${label} — Monprojetsolidaire` },
+        { name: "description", content: `Découvrez les projets solidaires de la catégorie ${label} et contribuez sans compte.` },
       ],
     };
   },

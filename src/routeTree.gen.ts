@@ -9,27 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VenteRouteImport } from './routes/vente'
-import { Route as LocationsRouteImport } from './routes/locations'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as VenteCategoryRouteImport } from './routes/vente.$category'
+import { Route as SplatRouteImport } from './routes/$'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as VenteRouteImport } from './routes/vente'
 import { Route as LocationsCategoryRouteImport } from './routes/locations.$category'
+import { Route as VenteCategoryRouteImport } from './routes/vente.$category'
 
-const VenteRoute = VenteRouteImport.update({
-  id: '/vente',
-  path: '/vente',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LocationsRoute = LocationsRouteImport.update({
-  id: '/locations',
-  path: '/locations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -37,24 +33,35 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VenteCategoryRoute = VenteCategoryRouteImport.update({
-  id: '/$category',
-  path: '/$category',
-  getParentRoute: () => VenteRoute,
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenteRoute = VenteRouteImport.update({
+  id: '/vente',
+  path: '/vente',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsCategoryRoute = LocationsCategoryRouteImport.update({
   id: '/$category',
   path: '/$category',
   getParentRoute: () => LocationsRoute,
 } as any)
+const VenteCategoryRoute = VenteCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
+  getParentRoute: () => VenteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/locations': typeof LocationsRouteWithChildren
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/locations': typeof LocationsRouteWithChildren
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/locations': typeof LocationsRouteWithChildren
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$'
     | '/about'
     | '/contact'
     | '/locations'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$'
     | '/about'
     | '/contact'
     | '/locations'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/$'
     | '/about'
     | '/contact'
     | '/locations'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   LocationsRoute: typeof LocationsRouteWithChildren
@@ -121,25 +134,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/vente': {
-      id: '/vente'
-      path: '/vente'
-      fullPath: '/vente'
-      preLoaderRoute: typeof VenteRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/locations': {
-      id: '/locations'
-      path: '/locations'
-      fullPath: '/locations'
-      preLoaderRoute: typeof LocationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -149,19 +155,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/vente/$category': {
-      id: '/vente/$category'
-      path: '/$category'
-      fullPath: '/vente/$category'
-      preLoaderRoute: typeof VenteCategoryRouteImport
-      parentRoute: typeof VenteRoute
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vente': {
+      id: '/vente'
+      path: '/vente'
+      fullPath: '/vente'
+      preLoaderRoute: typeof VenteRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/locations/$category': {
       id: '/locations/$category'
@@ -169,6 +182,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/locations/$category'
       preLoaderRoute: typeof LocationsCategoryRouteImport
       parentRoute: typeof LocationsRoute
+    }
+    '/vente/$category': {
+      id: '/vente/$category'
+      path: '/$category'
+      fullPath: '/vente/$category'
+      preLoaderRoute: typeof VenteCategoryRouteImport
+      parentRoute: typeof VenteRoute
     }
   }
 }
@@ -197,6 +217,7 @@ const VenteRouteWithChildren = VenteRoute._addFileChildren(VenteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   LocationsRoute: LocationsRouteWithChildren,

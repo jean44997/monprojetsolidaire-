@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 
@@ -7,16 +8,14 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Page introuvable</h2>
+        <p className="mt-2 text-sm text-muted-foreground">Le lien n’existe pas ou a été déplacé.</p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Retour à l’accueil
           </Link>
         </div>
       </div>
@@ -28,34 +27,36 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "google-site-verification", content: "fJB3YtwRCrS0KZ4t3ywdHHx9FmpXEN0fNxaIZqGqLSY" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
-      { title: "Atlantis Groupe — Immobilier à Abidjan" },
-      { name: "description", content: "Atlantis Groupe : agence immobilière à Abidjan. Vente et location de terrains, maisons et appartements." },
-      { name: "author", content: "Atlantis Groupe" },
-      { property: "og:title", content: "Atlantis Groupe — Immobilier à Abidjan" },
-      { property: "og:description", content: "Vente et location de terrains, maisons et appartements à Abidjan." },
+      { title: "Monprojetsolidaire — Cagnottes solidaires" },
+      { name: "description", content: "Créez une cagnotte solidaire en Côte d’Ivoire et mobilisez vos proches." },
+      { name: "author", content: "Monprojetsolidaire" },
+      { name: "theme-color", content: "#139d51" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-title", content: "Monprojetsolidaire" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
+      { name: "application-name", content: "Monprojetsolidaire" },
+      { property: "og:title", content: "Monprojetsolidaire — La solidarité en mouvement" },
+      { property: "og:description", content: "Créez une cagnotte solidaire et invitez vos proches à participer sans compte." },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "fr_CI" },
-      { property: "og:site_name", content: "Atlantis Groupe" },
+      { property: "og:site_name", content: "Monprojetsolidaire" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Atlantis Groupe — Immobilier à Abidjan" },
-      { name: "twitter:description", content: "Vente et location de biens immobiliers à Abidjan." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/8VaNPhMjqEMeocuGTI1Gy4hfHHr2/social-images/social-1778021556073-WhatsApp_Image_2026-04-30_at_23.10.39.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/8VaNPhMjqEMeocuGTI1Gy4hfHHr2/social-images/social-1778021556073-WhatsApp_Image_2026-04-30_at_23.10.39.webp" },
+      { name: "twitter:title", content: "Monprojetsolidaire — La solidarité en mouvement" },
+      { name: "twitter:description", content: "Créez une cagnotte solidaire et invitez vos proches à participer sans compte." },
     ],
     links: [
-      {
-        rel: "icon",
-        type: "image/jpeg",
-        href: "/favicon.jpeg",
-      },
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "apple-touch-icon", href: "/icons/icon-192.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -73,12 +74,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "RealEstateAgent",
-              name: "Atlantis Groupe",
-              url: "https://www.aibimmobilierciv.fr",
-              email: "contact@atlantisgroupe.ci",
-              areaServed: ["Abidjan", "Côte d’Ivoire"],
-              description: "Agence immobilière à Abidjan spécialisée dans la vente et la location de terrains, maisons et appartements.",
+              "@type": "Organization",
+              name: "Monprojetsolidaire",
+              areaServed: ["Côte d’Ivoire"],
+              description: "Monprojetsolidaire permet de créer et partager des cagnottes solidaires.",
             }),
           }}
         />
@@ -91,13 +90,23 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-import { Layout } from "@/components/Layout";
+import { MonprojetsolidaireApp } from "@/components/MonprojetsolidaireApp";
 import { Toaster } from "@/components/ui/sonner";
 
 function RootComponent() {
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      if (import.meta.env.DEV) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => registrations.forEach((registration) => registration.unregister())).catch(() => undefined);
+        caches.keys().then((keys) => keys.filter((key) => key.startsWith("monprojetsolidaire-")).forEach((key) => caches.delete(key))).catch(() => undefined);
+      } else {
+        navigator.serviceWorker.register("/sw.js", { updateViaCache: "none" }).catch(() => undefined);
+      }
+    }
+  }, []);
   return (
     <>
-      <Layout />
+      <MonprojetsolidaireApp />
       <Toaster />
     </>
   );

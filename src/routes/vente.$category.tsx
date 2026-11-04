@@ -10,8 +10,8 @@ export const Route = createFileRoute("/vente/$category")({
     const label = cat?.label ?? "Vente";
     return {
       meta: [
-        { title: `${label} à vendre Abidjan — Atlantis Groupe` },
-        { name: "description", content: `${label} à vendre à Abidjan. Sélection vérifiée par Atlantis Groupe.` },
+        { title: `Cagnottes ${label} — Monprojetsolidaire` },
+        { name: "description", content: `Découvrez les projets solidaires de la catégorie ${label} et partagez une cagnotte.` },
       ],
     };
   },

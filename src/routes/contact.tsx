@@ -1,52 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Phone, MessageCircle, MapPin, Mail } from "lucide-react";
-import { BookingForm } from "@/components/BookingForm";
-import { WHATSAPP_NUMBER, PHONE_1, PHONE_2 } from "@/data/properties";
+import { ArrowRight, CircleHelp, FileText, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Atlantis Groupe" },
-      { name: "description", content: "Contactez Atlantis Groupe pour acheter, vendre ou louer un bien immobilier à Abidjan. Réponse rapide par WhatsApp." },
-      { property: "og:title", content: "Contact — Atlantis Groupe" },
-      { property: "og:description", content: "Parlons de votre projet immobilier à Abidjan." },
+      { title: "Aide et contact — Monprojetsolidaire" },
+      { name: "description", content: "Trouvez de l’aide pour créer, partager ou contribuer à une cagnotte Monprojetsolidaire." },
+      { property: "og:title", content: "Aide et contact — Monprojetsolidaire" },
+      { property: "og:description", content: "Des réponses aux questions fréquentes sur les cagnottes solidaires." },
     ],
   }),
   component: Contact,
 });
 
 function Contact() {
+  const helpLinks = [
+    { icon: CircleHelp, title: "Questions fréquentes", text: "Créer une cagnotte, contribuer ou suivre une opération.", href: "/faq", action: "Consulter la FAQ" },
+    { icon: FileText, title: "Guide de cagnotte", text: "Présenter son projet et le partager avec sa communauté.", href: "/guide", action: "Lire le guide" },
+    { icon: HeartHandshake, title: "Un projet solidaire ?", text: "Commencez une collecte et partagez son lien.", href: "/cagnotte/create", action: "Créer une cagnotte" },
+  ];
   return (
-    <div className="container mx-auto px-4 py-16">
+    <main className="container mx-auto max-w-6xl px-4 py-12 sm:py-16">
       <div className="max-w-2xl">
-        <h1 className="text-4xl font-bold">Contactez-nous</h1>
-        <p className="mt-3 text-muted-foreground">Une question, une visite, un projet ? Notre équipe vous répond rapidement.</p>
+        <p className="text-sm font-semibold uppercase tracking-[.16em] text-primary">Centre d’aide</p>
+        <h1 className="mt-3 text-3xl font-bold leading-tight sm:text-5xl">Comment pouvons-nous vous aider ?</h1>
+        <p className="mt-4 text-base leading-7 text-muted-foreground">Choisissez le sujet qui correspond à votre besoin. Les paiements et retraits restent soumis aux étapes de vérification affichées dans votre espace.</p>
       </div>
-
-      <div className="mt-10 grid lg:grid-cols-3 gap-8">
-        <div className="space-y-4">
-          <div className="rounded-xl border bg-card p-5 shadow-[var(--shadow-card)]">
-            <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-primary" /><div><div className="text-xs text-muted-foreground">Téléphone</div><a href={`tel:${PHONE_1.replace(/\s/g, "")}`} className="font-medium hover:text-primary">{PHONE_1}</a></div></div>
-          </div>
-          <div className="rounded-xl border bg-card p-5 shadow-[var(--shadow-card)]">
-            <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-primary" /><div><div className="text-xs text-muted-foreground">Téléphone</div><a href={`tel:${PHONE_2.replace(/\s/g, "")}`} className="font-medium hover:text-primary">{PHONE_2}</a></div></div>
-          </div>
-          <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" className="block rounded-xl p-5 bg-[var(--whatsapp)] text-white hover:opacity-90">
-            <div className="flex items-center gap-3"><MessageCircle className="h-5 w-5" /><div><div className="text-xs opacity-80">WhatsApp</div><div className="font-medium">Discuter maintenant</div></div></div>
+      <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-3">
+        {helpLinks.map(({ icon: Icon, title, text, href, action }) => (
+          <a key={title} href={href} className="group flex min-h-52 flex-col rounded-2xl border bg-card p-5 transition hover:-translate-y-1 hover:shadow-lg sm:p-6">
+            <Icon className="h-7 w-7 text-primary" aria-hidden="true" />
+            <h2 className="mt-4 text-lg font-semibold">{title}</h2>
+            <p className="mt-2 flex-1 text-sm leading-6 text-muted-foreground">{text}</p>
+            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">{action}<ArrowRight size={16}/></span>
           </a>
-          <div className="rounded-xl border bg-card p-5 shadow-[var(--shadow-card)]">
-            <div className="flex items-center gap-3"><MapPin className="h-5 w-5 text-primary" /><div><div className="text-xs text-muted-foreground">Zone</div><div className="font-medium">Abidjan, Côte d'Ivoire</div></div></div>
-          </div>
-          <div className="rounded-xl border bg-card p-5 shadow-[var(--shadow-card)]">
-            <div className="flex items-center gap-3"><Mail className="h-5 w-5 text-primary" /><div><div className="text-xs text-muted-foreground">Email</div><div className="font-medium">contact@atlantisgroupe.ci</div></div></div>
-          </div>
-        </div>
-
-        <div className="lg:col-span-2 rounded-xl border bg-card p-6 shadow-[var(--shadow-card)]">
-          <h2 className="text-xl font-semibold mb-4">Envoyez-nous un message</h2>
-          <BookingForm />
-        </div>
+        ))}
       </div>
-    </div>
+    </main>
   );
 }

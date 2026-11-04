@@ -4,9 +4,9 @@ import { PropertyListing } from "@/components/PropertyListing";
 export const Route = createFileRoute("/locations")({
   head: () => ({
     meta: [
-      { title: "Location immobilier Abidjan — Atlantis Groupe" },
-      { name: "description", content: "Location à Abidjan : appartements, maisons, terrains. Court séjour, location meublée et longue durée." },
-      { property: "og:title", content: "Locations — Atlantis Groupe" },
+      { title: "Cagnottes solidaires à découvrir — Monprojetsolidaire" },
+      { name: "description", content: "Parcourez les cagnottes solidaires, découvrez des projets et contribuez sans créer de compte." },
+      { property: "og:title", content: "Explorer les cagnottes — Monprojetsolidaire" },
     ],
   }),
   component: () => <PropertyListing offer="location" />,
