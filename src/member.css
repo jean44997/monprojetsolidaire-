@@ -387,3 +387,9 @@ html[data-theme="dark"] .public-fundraiser-footer{border-color:#334237;color:#b6
   .info-card{grid-template-columns:34px minmax(0,1fr);gap:12px}
   .info-card p,.info-hero p{overflow-wrap:anywhere}
 }
+
+.account-error{padding:11px 13px;background:#fff1ee;color:#a93225;border:1px solid #f1c9c0;border-radius:9px;font-size:12px;line-height:1.5}
+.wallet-fund-card .wallet-withdrawal-form{grid-template-columns:1fr 1.3fr auto;align-items:end}
+.wallet-withdrawal-form p{grid-column:1/-1;color:#286d45!important;font-size:12px!important;line-height:1.5}
+.member-dark .account-error{background:#321f1c;color:#ffb7a9;border-color:#61332b}
+.member-dark .wallet-withdrawal-form input{background:#111a14;color:#edf4ef;border-color:#39463b}

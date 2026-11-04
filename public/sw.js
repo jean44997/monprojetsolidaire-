@@ -19,6 +19,11 @@ self.addEventListener("fetch", (event) => {
   if (url.pathname.startsWith("/@vite") || url.pathname.startsWith("/src/") || url.pathname.startsWith("/@react-refresh")) return;
 
   if (request.mode === "navigate") {
+    const protectedPath = /^\/(?:home|search|profile|history|wallet|notifications|cagnotte\/create)(?:\/|$)/.test(url.pathname);
+    if (protectedPath || url.search) {
+      event.respondWith(fetch(request).catch(async () => (await caches.match("/")) || Response.error()));
+      return;
+    }
     event.respondWith(fetch(request).then((response) => {
       if (response.ok) caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()));
       return response;

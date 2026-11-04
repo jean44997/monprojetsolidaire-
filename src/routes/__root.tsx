@@ -92,6 +92,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 import { MonprojetsolidaireApp } from "@/components/MonprojetsolidaireApp";
 import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider } from "@/lib/auth-context";
 
 function RootComponent() {
   useEffect(() => {
@@ -105,9 +106,9 @@ function RootComponent() {
     }
   }, []);
   return (
-    <>
+    <AuthProvider>
       <MonprojetsolidaireApp />
       <Toaster />
-    </>
+    </AuthProvider>
   );
 }
